@@ -31,7 +31,7 @@ model, decoder, utils = torch.hub.load(repo_or_dir='snakers4/silero-models',
 # download a single file, any format compatible with TorchAudio (soundfile backend)
 # torch.hub.download_url_to_file('https://www.signalogic.com/melp/EngSamples/eng_m2.wav',
 #                                dst='speech_orig.wav', progress=True)
-test_files = glob('eng_f2.wav')
+test_files = glob('nsa_m5.wav')
 batches = split_into_batches(test_files, batch_size=10)
 input = prepare_model_input(read_batch(batches[0]),
                             device=device)
@@ -55,4 +55,5 @@ def result():
         l.append(decoder(example.cpu()))
 
     result = listToString(l)
+    print(result)
     return {"Data": result}
